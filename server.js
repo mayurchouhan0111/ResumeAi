@@ -16,11 +16,16 @@ app.use(helmet({
 }));
 
 app.use(cors({
-    origin: process.env.FRONTEND_URL || 'http://localhost:8080',
+    origin: [
+        'http://127.0.0.1:55297',                    // Your Flutter dev server
+        'http://localhost:8080',                     // Alternative local dev
+        'https://resumeai-o7sj.onrender.com'         // Your production frontend
+    ],
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization']
 }));
+
 
 // Rate limiting
 const limiter = rateLimit({
